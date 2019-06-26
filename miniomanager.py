@@ -28,3 +28,8 @@ class MinioManager:
                         filestat.st_size, content_type=contenttype)
 
     
+    def downloadFile(self, bucketname, filename, filepath):
+        try:
+            self.__minioclient.fget_object(bucketname, filename, filepath)
+        except ResponseError as err:
+            print(err)

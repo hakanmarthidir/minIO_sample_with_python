@@ -6,7 +6,7 @@ import os
 
 #-----------------------------------------------
 # Connect to Minio
-minioManager = MinioManager('localhost:9000', 'minio', 'minio123456')
+minioManager = MinioManager('localhost:9000', 'minio', 'minio123')
 
 #-----------------------------------------------
 # Create a Folder
@@ -33,3 +33,8 @@ imgpath = './temp/'+imgname
 img.save(imgpath)
 print('File Created and Trasferring to MinIO')
 minioManager.saveFile('customerx', imgname, imgpath, 'image/jpeg')
+
+#-----------------------------------------------
+#Download Files 
+minioManager.downloadFile('customerx', imgname, './downloads/'+imgname)
+print('Download Completed...')
