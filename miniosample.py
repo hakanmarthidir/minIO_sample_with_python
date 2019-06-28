@@ -38,3 +38,8 @@ minioManager.saveFile('customerx', imgname, imgpath, 'image/jpeg')
 #Download Files 
 minioManager.downloadFile('customerx', imgname, './downloads/'+imgname)
 print('Download Completed...')
+
+
+#-----------------------------------------------
+#Permanent Urls 
+print(minioManager.getPermanentUrl('customerx', imgname))

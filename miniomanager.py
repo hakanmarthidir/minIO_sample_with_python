@@ -1,6 +1,7 @@
 from minio import Minio
 from minio.error import (ResponseError, BucketAlreadyExists)
 import os
+import timedelta
 
 class MinioManager:
 
@@ -31,5 +32,11 @@ class MinioManager:
     def downloadFile(self, bucketname, filename, filepath):
         try:
             self.__minioclient.fget_object(bucketname, filename, filepath)
+        except ResponseError as err:
+            print(err)
+
+    def getPermanentUrl(self, bucketname, filename):
+        try:
+            return self.__minioclient.presigned_get_object(bucketname,filename, expires=timedelta.Timedelta(days=7))
         except ResponseError as err:
             print(err)
